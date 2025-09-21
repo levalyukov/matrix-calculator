@@ -1,6 +1,30 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+#include <stdlib.h>
+
+int** transposition(int height, int width, int matrix[height][width]) {
+  int** new_matrix = (int**)malloc(width*sizeof(int*));
+	if (new_matrix == NULL) return NULL;
+
+	for (int i = 0; i < width; i++) {
+		new_matrix[i] = (int*)malloc(height*sizeof(int));
+		if (new_matrix[i] == NULL) {
+			for (int j = 0; j < i; j++) free(new_matrix[j]);
+			free(new_matrix);
+			return NULL;
+		};
+	};
+
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
+			new_matrix[i][j] = matrix[j][i];
+		};
+	};
+
+	return new_matrix;
+};
+
 int determinant(int size, int matrix[size][size]) {
 	int det = 0;
 	int submatrix[size-1][size-1];
