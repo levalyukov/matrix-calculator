@@ -1,0 +1,15 @@
+$.o
+*.obj
+
+*.exe
+a.out
+
+build/
+bin/
+Debug/
+Release/
+
+.vscode/
+.idea/
+*.swp
+*~
