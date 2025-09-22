@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 int** transposition(int height, int width, int matrix[height][width]) {
-  int** new_matrix = (int**)malloc(width*sizeof(int*));
+	int** new_matrix = (int**)malloc(width*sizeof(int*));
 	if (new_matrix == NULL) return NULL;
 
 	for (int i = 0; i < width; i++) {
