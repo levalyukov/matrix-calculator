@@ -1,7 +1,51 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef MATRIX
+#define MATRIX
 
 #include <stdlib.h>
+
+int** addition(int height, int width, int first_matrix[height][width], int second_matrix[height][width]) {
+	int** matrix = (int**)malloc(height*sizeof(int*));
+	if (matrix == NULL) return NULL;
+
+	for (int i = 0; i < width; i++) {
+		matrix[i] = (int*)malloc(width*sizeof(int*));
+		if (matrix[i] == NULL) {
+			for (int j = 0; j < i; j++) free(matrix[j]);
+			free(matrix);
+			return NULL;
+		};
+	};
+
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			matrix[i][j] = first_matrix[i][j] + second_matrix[i][j];
+			printf("%i ", matrix[i][j]);
+		};
+		printf("\n");
+	}; return matrix;
+};
+
+int** subtract(int height, int width, int first_matrix[height][width], int second_matrix[height][width]) {
+	int** matrix = (int**)malloc(height*sizeof(int*));
+	if (matrix == NULL) return NULL;
+
+	for (int i = 0; i < width; i++) {
+		matrix[i] = (int*)malloc(width*sizeof(int*));
+		if (matrix[i] == NULL) {
+			for (int j = 0; j < i; j++) free(matrix[j]);
+			free(matrix);
+			return NULL;
+		};
+	};
+
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			matrix[i][j] = first_matrix[i][j] - second_matrix[i][j];
+			printf("%i ", matrix[i][j]);
+		};
+		printf("\n");
+	}; return matrix;
+};
 
 int** transposition(int height, int width, int matrix[height][width]) {
 	int** new_matrix = (int**)malloc(width*sizeof(int*));
@@ -20,9 +64,7 @@ int** transposition(int height, int width, int matrix[height][width]) {
 		for (int j = 0; j < height; j++) {
 			new_matrix[i][j] = matrix[j][i];
 		};
-	};
-
-	return new_matrix;
+	}; return new_matrix;
 };
 
 int determinant(int size, int matrix[size][size]) {
@@ -48,9 +90,7 @@ int determinant(int size, int matrix[size][size]) {
 		};
 		det += sign * matrix[0][x] * determinant(size-1, submatrix);
 		sign = -sign;
-	};
-
-	return det;
+	}; return det;
 };
 
 #endif
